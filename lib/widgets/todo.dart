@@ -21,23 +21,62 @@ class _TodoState extends State<Todo> {
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 40,
+                height: 50,
               ),
-              for (int i = 0; i < 3; ++i)
-                Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.donut_large),
-                      title: Text('Develop a new todo app'),
-                    ),
-                    Divider(),
-                  ],
-                ),
+              for (int i = 0; i < 2; ++i)
+                getTaskItem('Sample Task adf asdfa sdf adsf ad adf adsf $i',
+                    index: i, onTap: () {
+                  print('Index $i');
+                }),
             ],
           ),
         ),
-        Shared().getCardHeader(text: 'TO DO'),
+        SharedWidget.getCardHeader(text: 'TO DO'),
       ],
     );
+  }
+
+  Widget getTaskItem(String text,
+      {@required int index, @required Function onTap}) {
+    final double height = 80.0;
+    return Container(
+        height: height,
+        child: Column(
+          children: <Widget>[
+            InkWell(
+              onTap: onTap,
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    height: height - 10,
+                    width: 7,
+                    decoration: BoxDecoration(
+                      color: TodosColor.leadingTaskColor(index),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(right: 8),
+                      child: Text(
+                        text,
+                        overflow: TextOverflow.clip,
+                        style: Theme.of(context).textTheme.title.copyWith(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 0.5,
+              child: Container(
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ));
   }
 }

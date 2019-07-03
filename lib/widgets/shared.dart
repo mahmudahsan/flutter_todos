@@ -3,16 +3,17 @@
  * https://github.com/mahmudahsan
  */
 import 'package:flutter/material.dart';
+import 'dart:math';
 
-class Shared {
-  Widget getCardHeader(
+class SharedWidget {
+  static Widget getCardHeader(
       {@required String text,
       Color textColor = Colors.white,
       int backgroundColorCode = 0xffca3e47}) {
     return Container(
       width: 85,
       alignment: AlignmentDirectional.center,
-      margin: EdgeInsets.only(left: 30),
+      margin: EdgeInsets.only(left: 32),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -26,5 +27,21 @@ class Shared {
         ),
       ),
     );
+  }
+}
+
+class TodosColor {
+  static Color leadingTaskColor(int pos) {
+    switch (pos) {
+      case 0:
+        return Colors.red[900];
+      case 1:
+        return Colors.green[900];
+      case 2:
+        return Colors.blue[900];
+    }
+
+    return Color.fromARGB(0xff - pos * 10, Random().nextInt(255),
+        Random().nextInt(255), Random().nextInt(255));
   }
 }

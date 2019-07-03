@@ -20,18 +20,33 @@ class TodosApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Color(0xfffff5eb),
         body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Header(),
-              SizedBox(
-                height: 50,
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                backgroundColor: Color(0x00),
+                floating: true,
+                flexibleSpace: Container(
+                  child: Header(),
+                ),
+                expandedHeight: 100,
               ),
-              Todo(),
-              SizedBox(
-                height: 50,
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    switch (index) {
+                      case 0:
+                        return Todo();
+                      case 1:
+                        return SizedBox(
+                          height: 50,
+                        );
+                      default:
+                        return Done();
+                    }
+                  },
+                  childCount: 3,
+                ),
               ),
-              Done(),
             ],
           ),
         ),
