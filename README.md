@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # flutter_todos
 
 A new Flutter application.
@@ -14,3 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.dev/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
+=======
+# flutter-todos
+A cross platform todo list app using flutter, sqlite etc.
+>>>>>>> 399c8d86c5839911fba32401c9886e270577c372
