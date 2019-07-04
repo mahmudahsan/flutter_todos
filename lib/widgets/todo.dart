@@ -83,7 +83,9 @@ class _TodoState extends State<Todo> {
                       text,
                       overflow: TextOverflow.clip,
                       textAlign: TextAlign.justify,
-                      style: Theme.of(context).textTheme.title.copyWith(),
+                      style: Theme.of(context).textTheme.title.copyWith(
+                            color: Color(0xff373640),
+                          ),
                     ),
                   ),
                 ),

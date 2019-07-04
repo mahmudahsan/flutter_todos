@@ -26,8 +26,25 @@ class TodosApp extends StatelessWidget {
                 backgroundColor: Color(0x00),
                 floating: true,
                 flexibleSpace: Container(
-                  child: Header(),
-                ),
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Header(),
+                    Container(
+                      margin: EdgeInsets.only(right: 10, top: 35),
+                      width: 30,
+                      child: GestureDetector(
+                        onTap: () {
+                          print('More Settings Clicked');
+                        },
+                        child: Icon(
+                          Icons.more_vert,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
                 expandedHeight: 100,
               ),
               SliverList(
