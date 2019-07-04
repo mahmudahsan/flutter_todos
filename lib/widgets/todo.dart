@@ -23,11 +23,27 @@ class _TodoState extends State<Todo> {
               SizedBox(
                 height: 50,
               ),
-              for (int i = 0; i < 2; ++i)
-                getTaskItem('Sample Task adf asdfa sdf adsf ad adf adsf $i',
-                    index: i, onTap: () {
-                  print('Index $i');
-                }),
+              getTaskItem(
+                'Sample Task adf asdfa sdf adsf',
+                index: 0,
+                onTap: () {
+                  print('Index 0');
+                },
+              ),
+              getTaskItem(
+                'Features slightly rounded corners and a drop shadow, giving it a 3D effect. ',
+                index: 1,
+                onTap: () {
+                  print('Index 1');
+                },
+              ),
+              getTaskItem(
+                'property allows you to control the drop shadow effect. Setting the elevation to 24, for example, visually lifts the Card further from the surface and causes the shadow to become more dispersed. For a list of supported elevation values, see Elevation in the Material guidelines. Specifying an unsupported value disables the drop shadow entirely.',
+                index: 2,
+                onTap: () {
+                  print('Index 2');
+                },
+              ),
             ],
           ),
         ),
@@ -38,45 +54,48 @@ class _TodoState extends State<Todo> {
 
   Widget getTaskItem(String text,
       {@required int index, @required Function onTap}) {
-    final double height = 80.0;
+    final double height = 50.0;
     return Container(
-        height: height,
         child: Column(
-          children: <Widget>[
-            InkWell(
-              onTap: onTap,
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    height: height - 10,
-                    width: 7,
-                    decoration: BoxDecoration(
-                      color: TodosColor.leadingTaskColor(index),
+      children: <Widget>[
+        InkWell(
+          onTap: onTap,
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: 5),
+                  height: height,
+                  width: 7,
+                  decoration: BoxDecoration(
+                    color: TodosColor.leadingTaskColor(index),
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      text,
+                      overflow: TextOverflow.clip,
+                      style: Theme.of(context).textTheme.title.copyWith(),
                     ),
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(right: 8),
-                      child: Text(
-                        text,
-                        overflow: TextOverflow.clip,
-                        style: Theme.of(context).textTheme.title.copyWith(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 0.5,
-              child: Container(
-                color: Colors.grey,
-              ),
-            ),
-          ],
-        ));
+          ),
+        ),
+        SizedBox(
+          height: 0.5,
+          child: Container(
+            color: Colors.grey,
+          ),
+        ),
+      ],
+    ));
   }
 }
