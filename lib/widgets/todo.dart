@@ -73,14 +73,16 @@ class _TodoState extends State<Todo> {
                   ),
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.only(
+                        left: 10, top: 10, right: 20, bottom: 10),
                     child: Text(
                       text,
                       overflow: TextOverflow.clip,
+                      textAlign: TextAlign.justify,
                       style: Theme.of(context).textTheme.title.copyWith(),
                     ),
                   ),
