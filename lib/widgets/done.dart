@@ -8,9 +8,10 @@ import 'package:flutter_todos/widgets/shared.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
 
 class Done extends StatefulWidget {
+  final Function onTap;
   final List<Model.Todo> dones;
 
-  Done({@required this.dones});
+  Done({@required this.dones, this.onTap});
 
   @override
   _DoneState createState() => _DoneState();
@@ -29,12 +30,12 @@ class _DoneState extends State<Done> {
               SizedBox(
                 height: 50,
               ),
-              for (int i = 0; i < widget.dones.length; ++i)
+              for (int i = widget.dones.length - 1; i >= 0; --i)
                 getTaskItem(
                   widget.dones[i].text,
                   index: i,
                   onTap: () {
-                    print('Index $i');
+                    widget.onTap(pos: i);
                   },
                 ),
             ],

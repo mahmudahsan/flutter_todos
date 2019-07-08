@@ -8,9 +8,10 @@ import 'package:flutter_todos/model/model.dart' as Model;
 import 'package:flutter_todos/utils/colors.dart';
 
 class Todo extends StatefulWidget {
+  final Function onTap;
   final List<Model.Todo> todos;
 
-  Todo({@required this.todos});
+  Todo({@required this.todos, this.onTap});
 
   @override
   _TodoState createState() => _TodoState();
@@ -34,7 +35,7 @@ class _TodoState extends State<Todo> {
                   widget.todos[i].text,
                   index: i,
                   onTap: () {
-                    print('Index $i');
+                    widget.onTap(pos: i);
                   },
                 ),
             ],

@@ -112,6 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       case 0:
                         return Todo(
                           todos: todos,
+                          onTap: markTodoAsDone,
                         ); // Active todos
                       case 1:
                         return SizedBox(
@@ -120,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       default:
                         return Done(
                           dones: dones,
+                          onTap: markDoneAsTodo,
                         ); // Done todos
                     }
                   },
@@ -153,8 +155,23 @@ class _HomeScreenState extends State<HomeScreen> {
         Model.Model.sharedInstance.addTodo(todo);
 
         getTodosAndDones();
-        controller.text = '';
       });
     }
+
+    controller.text = '';
+  }
+
+  void markTodoAsDone({@required int pos}) {
+    setState(() {
+      Model.Model.sharedInstance.markTodoAsDone(pos);
+      getTodosAndDones();
+    });
+  }
+
+  void markDoneAsTodo({@required int pos}) {
+    setState(() {
+      Model.Model.sharedInstance.markDoneAsTodo(pos);
+      getTodosAndDones();
+    });
   }
 }

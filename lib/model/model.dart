@@ -39,9 +39,17 @@ class Model {
     sampleTodos.add(todo);
   }
 
-  void markTodoAsDone(Todo todo) {}
+  void markTodoAsDone(int pos) {
+    Todo done = sampleTodos.removeAt(pos);
+    done.status = 1;
+    sampleDones.add(done);
+  }
 
-  void markDoneAsTodo(Todo todo) {}
+  void markDoneAsTodo(int pos) {
+    Todo todo = sampleDones.removeAt(pos);
+    todo.status = 0;
+    sampleTodos.add(todo);
+  }
 
   void clearDoneTodos() {}
 }
