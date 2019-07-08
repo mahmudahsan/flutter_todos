@@ -4,7 +4,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_todos/utils/shared.dart';
+import 'package:flutter_todos/widgets/shared.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
 
 class Done extends StatefulWidget {

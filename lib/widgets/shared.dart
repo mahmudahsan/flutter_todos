@@ -3,7 +3,6 @@
  * https://github.com/mahmudahsan
  */
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 class SharedWidget {
   static Widget getCardHeader(
@@ -32,21 +31,5 @@ class SharedWidget {
         ),
       ),
     );
-  }
-}
-
-class TodosColor {
-  static Color leadingTaskColor(int pos) {
-    switch (pos) {
-      case 0:
-        return Colors.red[900];
-      case 1:
-        return Colors.green[900];
-      case 2:
-        return Colors.blue[900];
-    }
-
-    return Color.fromARGB(0xff - pos * 10, Random().nextInt(255),
-        Random().nextInt(255), Random().nextInt(255));
   }
 }

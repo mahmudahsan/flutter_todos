@@ -3,8 +3,9 @@
  * https://github.com/mahmudahsan
  */
 import 'package:flutter/material.dart';
-import 'package:flutter_todos/utils/shared.dart';
+import 'package:flutter_todos/widgets/shared.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
+import 'package:flutter_todos/utils/colors.dart';
 
 class Todo extends StatefulWidget {
   final List<Model.Todo> todos;
@@ -62,7 +63,7 @@ class _TodoState extends State<Todo> {
                   height: height,
                   width: 7,
                   decoration: BoxDecoration(
-                    color: TodosColor.leadingTaskColor(index),
+                    color: TodosColor.sharedInstance.leadingTaskColor(index),
                   ),
                 ),
                 SizedBox(
