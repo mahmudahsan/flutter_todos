@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todos/constants.dart';
 import 'package:flutter_todos/widgets/header.dart';
+import 'package:flutter_todos/widgets/task_input.dart';
 import 'package:flutter_todos/widgets/todo.dart';
 import 'package:flutter_todos/widgets/done.dart';
 
@@ -16,6 +17,7 @@ class TodosApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.light().copyWith(),
       title: kAppTitle,
       home: HomeScreen(),
     );
@@ -40,28 +42,33 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverAppBar(
               backgroundColor: Color(0x00),
               floating: true,
-              flexibleSpace: Container(
-                  child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              flexibleSpace: Stack(
                 children: <Widget>[
-                  Header(
-                    msg: welcomeMsg,
-                  ),
                   Container(
-                    margin: EdgeInsets.only(right: 10, top: 35),
-                    width: 30,
-                    child: GestureDetector(
-                      onTap: () {
-                        print('More Settings Clicked');
-                      },
-                      child: Icon(
-                        Icons.more_vert,
-                        size: 30,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Header(
+                          msg: welcomeMsg,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(right: 10, top: 35),
+                          width: 30,
+                          child: GestureDetector(
+                            onTap: () {
+                              print('More Settings Clicked');
+                            },
+                            child: Icon(
+                              Icons.more_vert,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
-              )),
+              ),
               expandedHeight: 100,
             ),
             SliverList(
@@ -69,8 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 (context, index) {
                   switch (index) {
                     case 0:
-                      return Todo();
+                      return TaskInput();
                     case 1:
+                      return Todo();
+                    case 2:
                       return SizedBox(
                         height: 50,
                       );
@@ -78,23 +87,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       return Done();
                   }
                 },
-                childCount: 3,
+                childCount: 4,
               ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {});
-          print('Add Task');
-        },
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        backgroundColor: Color(0xffffca3e47),
-      ),
+//      floatingActionButton: FloatingActionButton(
+//        onPressed: () {
+//          setState(() {});
+//          print('Add Task');
+//        },
+//        child: Icon(
+//          Icons.add,
+//          color: Colors.white,
+//        ),
+//        backgroundColor: Color(0xffffca3e47),
+//      ),
     );
   }
 }

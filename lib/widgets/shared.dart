@@ -7,9 +7,13 @@ import 'dart:math';
 
 class SharedWidget {
   static Widget getCardHeader(
-      {@required String text,
+      {@required BuildContext context,
+      @required String text,
       Color textColor = Colors.white,
-      int backgroundColorCode = 0xffca3e47}) {
+      int backgroundColorCode = 0xffca3e47,
+      double customFontSize}) {
+    customFontSize ??= Theme.of(context).textTheme.title.fontSize;
+
     return Container(
       width: 85,
       alignment: AlignmentDirectional.center,
@@ -24,6 +28,7 @@ class SharedWidget {
         style: TextStyle(
           fontWeight: FontWeight.bold,
           color: textColor,
+          fontSize: customFontSize,
         ),
       ),
     );

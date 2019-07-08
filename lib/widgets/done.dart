@@ -49,7 +49,10 @@ class _DoneState extends State<Done> {
           ),
         ),
         SharedWidget.getCardHeader(
-            text: 'DONE', backgroundColorCode: 0xff34465d),
+            context: context,
+            text: 'DONE',
+            backgroundColorCode: 0xff34465d,
+            customFontSize: 16),
       ],
     );
   }

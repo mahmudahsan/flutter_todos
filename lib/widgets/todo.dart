@@ -47,7 +47,8 @@ class _TodoState extends State<Todo> {
             ],
           ),
         ),
-        SharedWidget.getCardHeader(text: 'TO DO'),
+        SharedWidget.getCardHeader(
+            context: context, text: 'TO DO', customFontSize: 16),
       ],
     );
   }
