@@ -9,6 +9,8 @@ import 'package:flutter_todos/widgets/header.dart';
 import 'package:flutter_todos/widgets/task_input.dart';
 import 'package:flutter_todos/widgets/todo.dart';
 import 'package:flutter_todos/widgets/done.dart';
+import 'package:flutter_todos/model/model.dart' as Model;
+import 'package:flutter_todos/utils/utils.dart';
 
 void main() => runApp(TodosApp());
 
@@ -33,95 +35,126 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String welcomeMsg = 'Good Morning';
+  List<Model.Todo> todos;
+  List<Model.Todo> dones;
+
+  @override
+  void initState() {
+    super.initState();
+    getTodosAndDones();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              backgroundColor: Theme.of(context).backgroundColor,
-              floating: true,
-              actions: <Widget>[
-                Text('hi'),
-              ],
-              flexibleSpace: FlexibleSpaceBar(
-                background: Column(
-                  children: <Widget>[
-                    Stack(
-                      children: <Widget>[
-                        Column(
-                          children: <Widget>[
-                            Container(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Header(
-                                    msg: welcomeMsg,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(right: 10, top: 35),
-                                    width: 30,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        print('More Settings Clicked');
-                                      },
-                                      child: Icon(
-                                        Icons.more_vert,
-                                        size: 30,
+        child: GestureDetector(
+          onTap: () {
+            Utils.hideKeyboard(context);
+          },
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                backgroundColor: Theme.of(context).backgroundColor,
+                floating: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Column(
+                    children: <Widget>[
+                      Stack(
+                        children: <Widget>[
+                          Column(
+                            children: <Widget>[
+                              Container(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Header(
+                                      msg: welcomeMsg,
+                                    ),
+                                    Container(
+                                      margin:
+                                          EdgeInsets.only(right: 10, top: 35),
+                                      width: 30,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          print('More Settings Clicked');
+                                        },
+                                        child: Icon(
+                                          Icons.more_vert,
+                                          size: 30,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(top: 20),
-                              child: TaskInput(),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                              Container(
+                                margin: EdgeInsets.only(top: 20),
+                                child: TaskInput(
+                                  onSubmitted: addTaskInTodo,
+                                ), // Add Todos
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                expandedHeight: 180,
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    switch (index) {
+                      case 0:
+                        return Todo(
+                          todos: todos,
+                        ); // Active todos
+                      case 1:
+                        return SizedBox(
+                          height: 30,
+                        );
+                      default:
+                        return Done(
+                          dones: dones,
+                        ); // Done todos
+                    }
+                  },
+                  childCount: 3,
                 ),
               ),
-              expandedHeight: 180,
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  switch (index) {
-                    case 0:
-                      return Todo();
-                    case 1:
-                      return SizedBox(
-                        height: 30,
-                      );
-                    default:
-                      return Done();
-                  }
-                },
-                childCount: 3,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-//      floatingActionButton: FloatingActionButton(
-//        onPressed: () {
-//          setState(() {});
-//          print('Add Task');
-//        },
-//        child: Icon(
-//          Icons.add,
-//          color: Colors.white,
-//        ),
-//        backgroundColor: Color(0xffffca3e47),
-//      ),
     );
+  }
+
+  void getTodosAndDones() {
+    todos = Model.Model.sharedInstance.getTodos();
+    dones = Model.Model.sharedInstance.getDones();
+  }
+
+  void addTaskInTodo({@required TextEditingController controller}) {
+    final inputText = controller.text.trim();
+
+    if (inputText.length > 0) {
+      // Add todos
+      setState(() {
+        Model.Todo todo = Model.Todo(
+          id: todos.length,
+          text: inputText,
+          status: 0,
+          created: DateTime.now(),
+        );
+        Model.Model.sharedInstance.addTodo(todo);
+
+        getTodosAndDones();
+        controller.text = '';
+      });
+    }
   }
 }

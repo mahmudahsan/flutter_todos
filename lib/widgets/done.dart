@@ -4,9 +4,14 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_todos/widgets/shared.dart';
+import 'package:flutter_todos/utils/shared.dart';
+import 'package:flutter_todos/model/model.dart' as Model;
 
 class Done extends StatefulWidget {
+  final List<Model.Todo> dones;
+
+  Done({@required this.dones});
+
   @override
   _DoneState createState() => _DoneState();
 }
@@ -24,27 +29,14 @@ class _DoneState extends State<Done> {
               SizedBox(
                 height: 50,
               ),
-              getTaskItem(
-                'Sample Task adf asdfa sdf adsf',
-                index: 0,
-                onTap: () {
-                  print('Index 0');
-                },
-              ),
-              getTaskItem(
-                'Features slightly rounded corners and a drop shadow, giving it a 3D effect. ',
-                index: 1,
-                onTap: () {
-                  print('Index 1');
-                },
-              ),
-              getTaskItem(
-                'property allows you to control the drop shadow effect. Setting the elevation to 24, for example, visually lifts the Card further from the surface and causes the shadow to become more dispersed. For a list of supported elevation values, see Elevation in the Material guidelines. Specifying an unsupported value disables the drop shadow entirely.',
-                index: 2,
-                onTap: () {
-                  print('Index 2');
-                },
-              ),
+              for (int i = 0; i < widget.dones.length; ++i)
+                getTaskItem(
+                  widget.dones[i].text,
+                  index: i,
+                  onTap: () {
+                    print('Index $i');
+                  },
+                ),
             ],
           ),
         ),
@@ -70,7 +62,7 @@ class _DoneState extends State<Done> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: 5, left: 5),
+                  margin: EdgeInsets.only(left: 5),
                   height: height,
                   child: Icon(
                     Icons.check,

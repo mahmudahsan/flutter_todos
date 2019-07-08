@@ -3,14 +3,20 @@
  * https://github.com/mahmudahsan
  */
 import 'package:flutter/material.dart';
-import 'package:flutter_todos/widgets/shared.dart';
+import 'package:flutter_todos/utils/utils.dart';
 
 class TaskInput extends StatefulWidget {
+  final Function onSubmitted;
+
+  TaskInput({@required Function this.onSubmitted});
+
   @override
   _TaskInputState createState() => _TaskInputState();
 }
 
 class _TaskInputState extends State<TaskInput> {
+  TextEditingController textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,6 +42,12 @@ class _TaskInputState extends State<TaskInput> {
                 decoration: InputDecoration(
                     hintText: 'What do you want to do?',
                     border: InputBorder.none),
+                textInputAction: TextInputAction.done,
+                controller: textEditingController,
+                onEditingComplete: () {
+                  widget.onSubmitted(controller: textEditingController);
+                  Utils.hideKeyboard(context);
+                },
               ),
             ),
           ],
