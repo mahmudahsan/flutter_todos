@@ -30,6 +30,10 @@ class _DoneState extends State<Done> {
               SizedBox(
                 height: 50,
               ),
+              if (widget.dones.length == 0)
+                Container(
+                  height: 10,
+                ),
               for (int i = widget.dones.length - 1; i >= 0; --i)
                 getTaskItem(
                   widget.dones[i].text,
