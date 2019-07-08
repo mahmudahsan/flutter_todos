@@ -17,7 +17,9 @@ class TodosApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light().copyWith(),
+      theme: ThemeData.light().copyWith(
+        backgroundColor: Color(0xfffff5eb),
+      ),
       title: kAppTitle,
       home: HomeScreen(),
     );
@@ -35,59 +37,75 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfffff5eb),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              backgroundColor: Color(0x00),
+              backgroundColor: Theme.of(context).backgroundColor,
               floating: true,
-              flexibleSpace: Stack(
-                children: <Widget>[
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              actions: <Widget>[
+                Text('hi'),
+              ],
+              flexibleSpace: FlexibleSpaceBar(
+                background: Column(
+                  children: <Widget>[
+                    Stack(
                       children: <Widget>[
-                        Header(
-                          msg: welcomeMsg,
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(right: 10, top: 35),
-                          width: 30,
-                          child: GestureDetector(
-                            onTap: () {
-                              print('More Settings Clicked');
-                            },
-                            child: Icon(
-                              Icons.more_vert,
-                              size: 30,
+                        Column(
+                          children: <Widget>[
+                            Container(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Header(
+                                    msg: welcomeMsg,
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(right: 10, top: 35),
+                                    width: 30,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        print('More Settings Clicked');
+                                      },
+                                      child: Icon(
+                                        Icons.more_vert,
+                                        size: 30,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
+                            Container(
+                              margin: EdgeInsets.only(top: 20),
+                              child: TaskInput(),
+                            )
+                          ],
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              expandedHeight: 100,
+              expandedHeight: 180,
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   switch (index) {
                     case 0:
-                      return TaskInput();
-                    case 1:
                       return Todo();
-                    case 2:
+                    case 1:
                       return SizedBox(
-                        height: 50,
+                        height: 30,
                       );
                     default:
                       return Done();
                   }
                 },
-                childCount: 4,
+                childCount: 3,
               ),
             ),
           ],
