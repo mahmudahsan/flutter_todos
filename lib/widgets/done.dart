@@ -9,9 +9,10 @@ import 'package:flutter_todos/model/model.dart' as Model;
 
 class Done extends StatefulWidget {
   final Function onTap;
+  final Function onDeleteTask;
   final List<Model.Todo> dones;
 
-  Done({@required this.dones, this.onTap});
+  Done({@required this.dones, this.onTap, this.onDeleteTask});
 
   @override
   _DoneState createState() => _DoneState();
@@ -61,36 +62,44 @@ class _DoneState extends State<Done> {
     return Container(
         child: Column(
       children: <Widget>[
-        InkWell(
-          onTap: onTap,
-          child: IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 5),
-                  height: height,
-                  child: Icon(
-                    Icons.check,
-                    color: Colors.grey[300],
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                        left: 10, top: 10, right: 20, bottom: 10),
-                    child: Text(
-                      text,
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.justify,
-                      style: Theme.of(context).textTheme.title.copyWith(
-                            color: Colors.grey[300],
-                            decoration: TextDecoration.lineThrough,
-                          ),
+        Dismissible(
+          key: Key(text + '$index'),
+          direction: DismissDirection.endToStart,
+          onDismissed: (direction) {
+            widget.onDeleteTask(todo: widget.dones[index]);
+          },
+          background: SharedWidget.getOnDismissDeleteBackground(),
+          child: InkWell(
+            onTap: onTap,
+            child: IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(left: 5),
+                    height: height,
+                    child: Icon(
+                      Icons.check,
+                      color: Colors.grey[300],
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          left: 10, top: 10, right: 20, bottom: 10),
+                      child: Text(
+                        text,
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.justify,
+                        style: Theme.of(context).textTheme.title.copyWith(
+                              color: Colors.grey[300],
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

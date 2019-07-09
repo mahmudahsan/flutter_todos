@@ -11,7 +11,6 @@ import 'package:flutter_todos/widgets/todo.dart';
 import 'package:flutter_todos/widgets/done.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
 import 'package:flutter_todos/model/db_wrapper.dart';
-import 'package:flutter_todos/model/db.dart';
 import 'package:flutter_todos/utils/utils.dart';
 
 void main() => runApp(TodosApp());
@@ -115,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Todo(
                           todos: todos,
                           onTap: markTodoAsDone,
+                          onDeleteTask: deleteTask,
                         ); // Active todos
                       case 1:
                         return SizedBox(
@@ -124,6 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Done(
                           dones: dones,
                           onTap: markDoneAsTodo,
+                          onDeleteTask: deleteTask,
                         ); // Done todos
                     }
                   },
@@ -138,19 +139,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void getTodosAndDones() async {
-    todos = await DBWrapper.sharedInstance.getTodos();
-    dones = await DBWrapper.sharedInstance.getDones();
+    final _todos = await DBWrapper.sharedInstance.getTodos();
+    final _dones = await DBWrapper.sharedInstance.getDones();
 
-    // TESTING SQLITE DATABASE
-//    Model.Todo todo = Model.Todo(
-//      id: 1,
-//      title: 'Let go for shopping',
-//      created: DateTime.now(),
-//      updated: DateTime.now(),
-//      status: 0,
-//    );
-//    DB.sharedInstance.createTodo(todo);
-//    print('DB Executed');
+    setState(() {
+      todos = _todos;
+      dones = _dones;
+    });
   }
 
   void addTaskInTodo({@required TextEditingController controller}) {
@@ -158,33 +153,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (inputText.length > 0) {
       // Add todos
-      setState(() {
-        Model.Todo todo = Model.Todo(
-          id: todos.length,
-          title: inputText,
-          status: 0,
-          created: DateTime.now(),
-        );
-        DBWrapper.sharedInstance.addTodo(todo);
+      Model.Todo todo = Model.Todo(
+        title: inputText,
+        created: DateTime.now(),
+        updated: DateTime.now(),
+        status: Model.TodoStatus.active.index,
+      );
 
-        getTodosAndDones();
-      });
+      DBWrapper.sharedInstance.addTodo(todo);
+      getTodosAndDones();
     }
 
     controller.text = '';
   }
 
   void markTodoAsDone({@required int pos}) {
-    setState(() {
-      DBWrapper.sharedInstance.markTodoAsDone(pos);
-      getTodosAndDones();
-    });
+    DBWrapper.sharedInstance.markTodoAsDone(todos[pos]);
+    getTodosAndDones();
   }
 
   void markDoneAsTodo({@required int pos}) {
-    setState(() {
-      DBWrapper.sharedInstance.markDoneAsTodo(pos);
-      getTodosAndDones();
-    });
+    DBWrapper.sharedInstance.markDoneAsTodo(dones[pos]);
+    getTodosAndDones();
+  }
+
+  void deleteTask({@required Model.Todo todo}) {
+    DBWrapper.sharedInstance.deleteTodo(todo);
+    getTodosAndDones();
   }
 }

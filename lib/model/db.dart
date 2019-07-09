@@ -47,8 +47,16 @@ class DB {
     await db.insert(kTableTodos, todo.toMapAutoID());
   }
 
-  void updateTodo() {}
-  void deleteTodo() {}
+  void updateTodo(Todo todo) async {
+    final db = await database;
+    await db
+        .update(kTableTodos, todo.toMap(), where: 'id=?', whereArgs: [todo.id]);
+  }
+
+  void deleteTodo(Todo todo) async {
+    final db = await database;
+    await db.delete(kTableTodos, where: 'id=?', whereArgs: [todo.id]);
+  }
 
   Future<List<Todo>> retrieveTodos(
       {TodoStatus status = TodoStatus.active}) async {

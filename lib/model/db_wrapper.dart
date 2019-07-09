@@ -20,20 +20,24 @@ class DBWrapper {
     return list;
   }
 
-  void addTodo(Todo todo) {
-    //sampleTodos.add(todo);
+  void addTodo(Todo todo) async {
+    await DB.sharedInstance.createTodo(todo);
   }
 
-  void markTodoAsDone(int pos) {
-//    Todo done = sampleTodos.removeAt(pos);
-//    done.status = 1;
-//    sampleDones.add(done);
+  void markTodoAsDone(Todo todo) async {
+    todo.status = TodoStatus.done.index;
+    todo.updated = DateTime.now();
+    await DB.sharedInstance.updateTodo(todo);
   }
 
-  void markDoneAsTodo(int pos) {
-//    Todo todo = sampleDones.removeAt(pos);
-//    todo.status = 0;
-//    sampleTodos.add(todo);
+  void markDoneAsTodo(Todo todo) async {
+    todo.status = TodoStatus.active.index;
+    todo.updated = DateTime.now();
+    await DB.sharedInstance.updateTodo(todo);
+  }
+
+  void deleteTodo(Todo todo) async {
+    await DB.sharedInstance.deleteTodo(todo);
   }
 
   void clearDoneTodos() {}

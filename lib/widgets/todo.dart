@@ -9,9 +9,10 @@ import 'package:flutter_todos/utils/colors.dart';
 
 class Todo extends StatefulWidget {
   final Function onTap;
+  final Function onDeleteTask;
   final List<Model.Todo> todos;
 
-  Todo({@required this.todos, this.onTap});
+  Todo({@required this.todos, this.onTap, this.onDeleteTask});
 
   @override
   _TodoState createState() => _TodoState();
@@ -58,38 +59,46 @@ class _TodoState extends State<Todo> {
     return Container(
         child: Column(
       children: <Widget>[
-        InkWell(
-          onTap: onTap,
-          child: IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: 5),
-                  height: height,
-                  width: 7,
-                  decoration: BoxDecoration(
-                    color: TodosColor.sharedInstance.leadingTaskColor(index),
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                        left: 10, top: 10, right: 20, bottom: 10),
-                    child: Text(
-                      text,
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.justify,
-                      style: Theme.of(context).textTheme.title.copyWith(
-                            color: Color(0xff373640),
-                          ),
+        Dismissible(
+          key: Key(text + '$index'),
+          direction: DismissDirection.endToStart,
+          onDismissed: (direction) {
+            widget.onDeleteTask(todo: widget.todos[index]);
+          },
+          background: SharedWidget.getOnDismissDeleteBackground(),
+          child: InkWell(
+            onTap: onTap,
+            child: IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(top: 5),
+                    height: height,
+                    width: 7,
+                    decoration: BoxDecoration(
+                      color: TodosColor.sharedInstance.leadingTaskColor(index),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          left: 10, top: 10, right: 20, bottom: 10),
+                      child: Text(
+                        text,
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.justify,
+                        style: Theme.of(context).textTheme.title.copyWith(
+                              color: Color(0xff373640),
+                            ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

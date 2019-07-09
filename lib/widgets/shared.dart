@@ -32,4 +32,19 @@ class SharedWidget {
       ),
     );
   }
+
+  static Widget getOnDismissDeleteBackground() {
+    return Container(
+      alignment: Alignment.centerRight,
+      color: Colors.red[300],
+      padding: EdgeInsets.only(right: 10),
+      child: Text(
+        'DELETE',
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
 }
