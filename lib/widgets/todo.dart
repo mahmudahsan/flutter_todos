@@ -30,18 +30,19 @@ class _TodoState extends State<Todo> {
               SizedBox(
                 height: 50,
               ),
-              if (widget.todos.length == 0)
+              if (widget.todos == null || widget.todos.length == 0)
                 Container(
                   height: 10,
                 ),
-              for (int i = 0; i < widget.todos.length; ++i)
-                getTaskItem(
-                  widget.todos[i].text,
-                  index: i,
-                  onTap: () {
-                    widget.onTap(pos: i);
-                  },
-                ),
+              if (widget.todos != null)
+                for (int i = 0; i < widget.todos.length; ++i)
+                  getTaskItem(
+                    widget.todos[i].title,
+                    index: i,
+                    onTap: () {
+                      widget.onTap(pos: i);
+                    },
+                  ),
             ],
           ),
         ),

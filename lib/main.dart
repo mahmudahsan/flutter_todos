@@ -10,6 +10,8 @@ import 'package:flutter_todos/widgets/task_input.dart';
 import 'package:flutter_todos/widgets/todo.dart';
 import 'package:flutter_todos/widgets/done.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
+import 'package:flutter_todos/model/db_wrapper.dart';
+import 'package:flutter_todos/model/db.dart';
 import 'package:flutter_todos/utils/utils.dart';
 
 void main() => runApp(TodosApp());
@@ -135,9 +137,20 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void getTodosAndDones() {
-    todos = Model.Model.sharedInstance.getTodos();
-    dones = Model.Model.sharedInstance.getDones();
+  void getTodosAndDones() async {
+    todos = await DBWrapper.sharedInstance.getTodos();
+    dones = await DBWrapper.sharedInstance.getDones();
+
+    // TESTING SQLITE DATABASE
+//    Model.Todo todo = Model.Todo(
+//      id: 1,
+//      title: 'Let go for shopping',
+//      created: DateTime.now(),
+//      updated: DateTime.now(),
+//      status: 0,
+//    );
+//    DB.sharedInstance.createTodo(todo);
+//    print('DB Executed');
   }
 
   void addTaskInTodo({@required TextEditingController controller}) {
@@ -148,11 +161,11 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         Model.Todo todo = Model.Todo(
           id: todos.length,
-          text: inputText,
+          title: inputText,
           status: 0,
           created: DateTime.now(),
         );
-        Model.Model.sharedInstance.addTodo(todo);
+        DBWrapper.sharedInstance.addTodo(todo);
 
         getTodosAndDones();
       });
@@ -163,14 +176,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void markTodoAsDone({@required int pos}) {
     setState(() {
-      Model.Model.sharedInstance.markTodoAsDone(pos);
+      DBWrapper.sharedInstance.markTodoAsDone(pos);
       getTodosAndDones();
     });
   }
 
   void markDoneAsTodo({@required int pos}) {
     setState(() {
-      Model.Model.sharedInstance.markDoneAsTodo(pos);
+      DBWrapper.sharedInstance.markDoneAsTodo(pos);
       getTodosAndDones();
     });
   }
