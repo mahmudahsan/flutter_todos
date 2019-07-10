@@ -35,7 +35,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String welcomeMsg = 'Good Morning';
+  String welcomeMsg;
   List<Model.Todo> todos;
   List<Model.Todo> dones;
 
@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getTodosAndDones();
+    welcomeMsg = Utils.getWelcomeMessage();
   }
 
   @override
