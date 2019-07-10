@@ -176,18 +176,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   PopupMenuButton getMoreOptionsWidget() {
     return PopupMenuButton<int>(
-      elevation: 4,
-      icon: Icon(Icons.more_vert),
-      onSelected: (value) {
-        print('Selected value: $value');
-      },
-      itemBuilder: (context) => [
-            for (int i = 0; i < kMoreOptionsMap.length; ++i)
-              PopupMenuItem(
-                value: i,
-                child: Text(kMoreOptionsMap[i]),
-              ),
-          ],
-    );
+        elevation: 4,
+        icon: Icon(Icons.more_vert),
+        onSelected: (value) {
+          print('Selected value: $value');
+        },
+        itemBuilder: (context) {
+          List list = List<PopupMenuEntry<int>>();
+
+          for (int i = 0; i < kMoreOptionsMap.length; ++i) {
+            list.add(PopupMenuItem(value: i, child: Text(kMoreOptionsMap[i])));
+
+            if (i == 0 || i == 2) {
+              list.add(PopupMenuDivider(
+                height: 5,
+              ));
+            }
+          }
+
+          return list;
+        });
   }
 }
