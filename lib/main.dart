@@ -77,16 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       msg: welcomeMsg,
                                     ),
                                     Container(
-                                      margin:
-                                          EdgeInsets.only(right: 10, top: 35),
-                                      width: 30,
-//                                      child: GestureDetector(
-//                                        onTap: onMoreButtonClicked,
-//                                        child: Icon(
-//                                          Icons.more_vert,
-//                                          size: 30,
-//                                        ),
-//                                      ),
+                                      margin: EdgeInsets.only(top: 35),
                                       child: getMoreOptionsWidget(),
                                     ),
                                   ],
@@ -187,6 +178,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return PopupMenuButton<int>(
       elevation: 4,
       icon: Icon(Icons.more_vert),
+      onSelected: (value) {
+        print('Selected value: $value');
+      },
       itemBuilder: (context) => [
             for (int i = 0; i < kMoreOptionsMap.length; ++i)
               PopupMenuItem(
@@ -195,9 +189,5 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
           ],
     );
-  }
-
-  void onMoreButtonClicked() {
-    print('hi');
   }
 }
