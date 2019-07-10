@@ -4,6 +4,28 @@
  */
 import 'package:flutter/material.dart';
 
+enum kMoreOptionsKeys {
+  clearAll,
+  moreApps,
+  about,
+  share,
+  writeReview,
+  sendUsEmail,
+  likeUs,
+  followUs,
+}
+
+Map<int, String> kMoreOptionsMap = {
+  kMoreOptionsKeys.clearAll.index: 'Clear All Done',
+  kMoreOptionsKeys.moreApps.index: 'More Apps',
+  kMoreOptionsKeys.about.index: 'About',
+  kMoreOptionsKeys.share.index: 'Share',
+  kMoreOptionsKeys.writeReview.index: 'Write a Review',
+  kMoreOptionsKeys.sendUsEmail.index: 'Help Me',
+  kMoreOptionsKeys.likeUs.index: 'Like Us',
+  kMoreOptionsKeys.followUs.index: 'Follow Us',
+};
+
 class Utils {
   static void hideKeyboard(BuildContext context) {
     FocusScope.of(context).requestFocus(new FocusNode());

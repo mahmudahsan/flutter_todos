@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String welcomeMsg;
   List<Model.Todo> todos;
   List<Model.Todo> dones;
+  //String _selection;
 
   @override
   void initState() {
@@ -79,15 +80,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       margin:
                                           EdgeInsets.only(right: 10, top: 35),
                                       width: 30,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          print('More Settings Clicked');
-                                        },
-                                        child: Icon(
-                                          Icons.more_vert,
-                                          size: 30,
-                                        ),
-                                      ),
+//                                      child: GestureDetector(
+//                                        onTap: onMoreButtonClicked,
+//                                        child: Icon(
+//                                          Icons.more_vert,
+//                                          size: 30,
+//                                        ),
+//                                      ),
+                                      child: getMoreOptionsWidget(),
                                     ),
                                   ],
                                 ),
@@ -181,5 +181,23 @@ class _HomeScreenState extends State<HomeScreen> {
   void deleteTask({@required Model.Todo todo}) {
     DBWrapper.sharedInstance.deleteTodo(todo);
     getTodosAndDones();
+  }
+
+  PopupMenuButton getMoreOptionsWidget() {
+    return PopupMenuButton<int>(
+      elevation: 4,
+      icon: Icon(Icons.more_vert),
+      itemBuilder: (context) => [
+            for (int i = 0; i < kMoreOptionsMap.length; ++i)
+              PopupMenuItem(
+                value: i,
+                child: Text(kMoreOptionsMap[i]),
+              ),
+          ],
+    );
+  }
+
+  void onMoreButtonClicked() {
+    print('hi');
   }
 }
