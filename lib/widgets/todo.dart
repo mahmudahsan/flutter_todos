@@ -7,6 +7,9 @@ import 'package:flutter_todos/widgets/shared.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
 import 'package:flutter_todos/utils/colors.dart';
 
+const int NoTask = -1;
+const int animationMilliseconds = 500;
+
 class Todo extends StatefulWidget {
   final Function onTap;
   final Function onDeleteTask;
@@ -19,6 +22,9 @@ class Todo extends StatefulWidget {
 }
 
 class _TodoState extends State<Todo> {
+  int taskPosition = NoTask;
+  bool showCompletedTaskAnimation = false;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -37,12 +43,29 @@ class _TodoState extends State<Todo> {
                 ),
               if (widget.todos != null)
                 for (int i = 0; i < widget.todos.length; ++i)
-                  getTaskItem(
-                    widget.todos[i].title,
-                    index: i,
-                    onTap: () {
-                      widget.onTap(pos: i);
-                    },
+                  AnimatedOpacity(
+                    curve: Curves.fastOutSlowIn,
+                    opacity: taskPosition != i
+                        ? 1.0
+                        : showCompletedTaskAnimation ? 0 : 1,
+                    duration: Duration(seconds: 1),
+                    child: getTaskItem(
+                      widget.todos[i].title,
+                      index: i,
+                      onTap: () {
+                        setState(() {
+                          taskPosition = i;
+                          showCompletedTaskAnimation = true;
+                        });
+                        Future.delayed(
+                          Duration(milliseconds: animationMilliseconds),
+                        ).then((value) {
+                          taskPosition = NoTask;
+                          showCompletedTaskAnimation = false;
+                          widget.onTap(pos: i);
+                        });
+                      },
+                    ),
                   ),
             ],
           ),
@@ -70,7 +93,6 @@ class _TodoState extends State<Todo> {
             onTap: onTap,
             child: IntrinsicHeight(
               child: Row(
-                //crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(top: 5),
