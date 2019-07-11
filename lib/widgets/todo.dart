@@ -74,7 +74,6 @@ class _TodoState extends State<Todo> {
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(top: 5),
-                    height: height,
                     width: 7,
                     decoration: BoxDecoration(
                       color: TodosColor.sharedInstance.leadingTaskColor(index),
@@ -86,7 +85,7 @@ class _TodoState extends State<Todo> {
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.only(
-                          left: 10, top: 15, right: 20, bottom: 10),
+                          left: 10, top: 15, right: 20, bottom: 15),
                       child: Text(
                         text,
                         overflow: TextOverflow.clip,

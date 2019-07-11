@@ -38,7 +38,7 @@ class _TaskInputState extends State<TaskInput> {
             Expanded(
               child: TextField(
                 minLines: 1,
-                maxLines: 3,
+                maxLines: 2,
                 decoration: InputDecoration(
                     hintText: 'What do you want to do?',
                     border: InputBorder.none),

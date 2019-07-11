@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: TaskInput(
                                   onSubmitted: addTaskInTodo,
                                 ), // Add Todos
-                              )
+                              ),
                             ],
                           ),
                         ],
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                expandedHeight: 180,
+                expandedHeight: 200,
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
