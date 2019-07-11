@@ -180,6 +180,18 @@ class _HomeScreenState extends State<HomeScreen> {
         icon: Icon(Icons.more_vert),
         onSelected: (value) {
           print('Selected value: $value');
+          if (value == kMoreOptionsKeys.clearAll.index) {
+          } else if (value == kMoreOptionsKeys.moreApps.index) {
+            Utils.launchURL(Utils.showPlatformSpecificUrl(
+                iOSUrl: kAppPortfolioApple, androidUrl: kappPortfolioGoogle));
+          } else if (value == kMoreOptionsKeys.about.index) {
+            Utils.launchURL(kAboutPageUrl);
+          } else if (value == kMoreOptionsKeys.writeReview.index) {
+            Utils.launchURL(Utils.showPlatformSpecificUrl(
+                iOSUrl: kAppPortfolioApple, androidUrl: kGooglePlayUrl));
+          } else if (value == kMoreOptionsKeys.followUs.index) {
+            Utils.launchURL(kAppTwitterPage);
+          }
         },
         itemBuilder: (context) {
           List list = List<PopupMenuEntry<int>>();
@@ -187,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
           for (int i = 0; i < kMoreOptionsMap.length; ++i) {
             list.add(PopupMenuItem(value: i, child: Text(kMoreOptionsMap[i])));
 
-            if (i == 0 || i == 2) {
+            if (i == 0) {
               list.add(PopupMenuDivider(
                 height: 5,
               ));

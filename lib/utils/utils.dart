@@ -3,26 +3,23 @@
  * https://github.com/mahmudahsan
  */
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:io';
+import 'package:flutter_todos/constants.dart';
 
 enum kMoreOptionsKeys {
   clearAll,
   moreApps,
   about,
-  share,
   writeReview,
-  sendUsEmail,
-  likeUs,
   followUs,
 }
 
 Map<int, String> kMoreOptionsMap = {
-  kMoreOptionsKeys.clearAll.index: 'Clear All Done',
+  kMoreOptionsKeys.clearAll.index: 'Clear Done',
   kMoreOptionsKeys.moreApps.index: 'More Apps',
   kMoreOptionsKeys.about.index: 'About',
-  kMoreOptionsKeys.share.index: 'Share',
   kMoreOptionsKeys.writeReview.index: 'Write a Review',
-  kMoreOptionsKeys.sendUsEmail.index: 'Help Me',
-  kMoreOptionsKeys.likeUs.index: 'Like Us',
   kMoreOptionsKeys.followUs.index: 'Follow Us',
 };
 
@@ -44,5 +41,21 @@ class Utils {
     }
 
     return msg;
+  }
+
+  static void launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      print('Could not launch $url');
+    }
+  }
+
+  static String showPlatformSpecificUrl({String iOSUrl, String androidUrl}) {
+    if (Platform.isIOS) {
+      return iOSUrl;
+    } else if (Platform.isAndroid) {
+      return androidUrl;
+    }
   }
 }
