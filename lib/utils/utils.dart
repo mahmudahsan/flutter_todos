@@ -12,6 +12,7 @@ enum kMoreOptionsKeys {
   moreApps,
   about,
   writeReview,
+  shareApp,
   followUs,
 }
 
@@ -20,6 +21,7 @@ Map<int, String> kMoreOptionsMap = {
   kMoreOptionsKeys.moreApps.index: 'More Apps',
   kMoreOptionsKeys.about.index: 'About',
   kMoreOptionsKeys.writeReview.index: 'Write a Review',
+  kMoreOptionsKeys.shareApp.index: 'Share',
   kMoreOptionsKeys.followUs.index: 'Follow Us',
 };
 
@@ -51,7 +53,7 @@ class Utils {
     }
   }
 
-  static String showPlatformSpecificUrl({String iOSUrl, String androidUrl}) {
+  static String getPlatformSpecificUrl({String iOSUrl, String androidUrl}) {
     if (Platform.isIOS) {
       return iOSUrl;
     } else if (Platform.isAndroid) {
