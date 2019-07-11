@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
-import 'package:flutter_todos/constants.dart';
+import 'package:flutter_todos/utils/colors.dart';
 
 enum kMoreOptionsKeys {
   clearAll,
@@ -57,5 +57,46 @@ class Utils {
     } else if (Platform.isAndroid) {
       return androidUrl;
     }
+  }
+
+  static void showCustomDialog(BuildContext context,
+      {String title,
+      String msg,
+      String noBtnTitle: 'Close',
+      Function onConfirm,
+      String confirmBtnTitle: 'Yes'}) {
+    final dialog = AlertDialog(
+      title: Text(title),
+      content: Text(msg),
+      actions: <Widget>[
+        if (onConfirm != null)
+          RaisedButton(
+            color: Color(TodosColor.kPrimaryColorCode),
+            onPressed: () {
+              onConfirm();
+              Navigator.pop(context);
+            },
+            child: Text(
+              confirmBtnTitle,
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        RaisedButton(
+          color: Color(TodosColor.kSecondaryColorCode),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text(
+            noBtnTitle,
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );
+    showDialog(context: context, builder: (x) => dialog);
   }
 }

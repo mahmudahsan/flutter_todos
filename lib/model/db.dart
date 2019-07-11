@@ -9,6 +9,9 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:flutter_todos/model/model.dart';
 
+const kTodosStatusActive = 0;
+const kTodosStatusDone = 1;
+
 const kDatabaseName = 'todos.db';
 const kDatabaseVersion = 1;
 const kSQLCreateStatement = '''
@@ -17,7 +20,7 @@ CREATE TABLE "todos" (
 	 "title" TEXT NOT NULL,
 	 "created" text NOT NULL,
 	 "updated" TEXT NOT NULL,
-	 "status" integer DEFAULT 0
+	 "status" integer DEFAULT $kTodosStatusActive
 );
 ''';
 
@@ -56,6 +59,11 @@ class DB {
   void deleteTodo(Todo todo) async {
     final db = await database;
     await db.delete(kTableTodos, where: 'id=?', whereArgs: [todo.id]);
+  }
+
+  void deleteAllTodos({int status = kTodosStatusDone}) async {
+    final db = await database;
+    await db.delete(kTableTodos, where: 'status=?', whereArgs: [status]);
   }
 
   Future<List<Todo>> retrieveTodos(

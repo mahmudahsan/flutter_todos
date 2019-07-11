@@ -3,13 +3,14 @@
  * https://github.com/mahmudahsan
  */
 import 'package:flutter/material.dart';
+import 'package:flutter_todos/utils/colors.dart';
 
 class SharedWidget {
   static Widget getCardHeader(
       {@required BuildContext context,
       @required String text,
       Color textColor = Colors.white,
-      int backgroundColorCode = 0xffca3e47,
+      int backgroundColorCode = TodosColor.kPrimaryColorCode,
       double customFontSize}) {
     customFontSize ??= Theme.of(context).textTheme.title.fontSize;
 

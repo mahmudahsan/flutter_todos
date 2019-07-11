@@ -181,6 +181,13 @@ class _HomeScreenState extends State<HomeScreen> {
         onSelected: (value) {
           print('Selected value: $value');
           if (value == kMoreOptionsKeys.clearAll.index) {
+            Utils.showCustomDialog(context,
+                title: 'Are you sure?',
+                msg: 'All done todos will be deleted permanently',
+                onConfirm: () {
+              DBWrapper.sharedInstance.deleteAllDoneTodos();
+              getTodosAndDones();
+            });
           } else if (value == kMoreOptionsKeys.moreApps.index) {
             Utils.launchURL(Utils.showPlatformSpecificUrl(
                 iOSUrl: kAppPortfolioApple, androidUrl: kappPortfolioGoogle));

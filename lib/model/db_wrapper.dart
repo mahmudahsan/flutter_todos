@@ -40,5 +40,7 @@ class DBWrapper {
     await DB.sharedInstance.deleteTodo(todo);
   }
 
-  void clearDoneTodos() {}
+  void deleteAllDoneTodos() async {
+    await DB.sharedInstance.deleteAllTodos();
+  }
 }

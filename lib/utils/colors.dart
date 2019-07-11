@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class TodosColor {
+  static const kPrimaryColorCode = 0xffca3e47;
+  static const kSecondaryColorCode = 0xff34465d;
+
   static TodosColor sharedInstance = TodosColor._();
 
   List<Color> storedColors;

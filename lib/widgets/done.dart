@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todos/widgets/shared.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
+import 'package:flutter_todos/utils/colors.dart';
 
 class Done extends StatefulWidget {
   final Function onTap;
@@ -50,7 +51,7 @@ class _DoneState extends State<Done> {
         SharedWidget.getCardHeader(
             context: context,
             text: 'DONE',
-            backgroundColorCode: 0xff34465d,
+            backgroundColorCode: TodosColor.kSecondaryColorCode,
             customFontSize: 16),
       ],
     );
