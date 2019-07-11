@@ -27,7 +27,7 @@ class _TaskInputState extends State<TaskInput> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: 6),
+              margin: EdgeInsets.only(top: 5),
               width: 40,
               child: Icon(
                 Icons.add,
