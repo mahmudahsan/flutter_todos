@@ -70,7 +70,7 @@ class _TodoState extends State<Todo> {
             onTap: onTap,
             child: IntrinsicHeight(
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                //crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(top: 5),
@@ -86,7 +86,7 @@ class _TodoState extends State<Todo> {
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.only(
-                          left: 10, top: 10, right: 20, bottom: 10),
+                          left: 10, top: 15, right: 20, bottom: 10),
                       child: Text(
                         text,
                         overflow: TextOverflow.clip,
