@@ -154,6 +154,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
       DBWrapper.sharedInstance.addTodo(todo);
       getTodosAndDones();
+    } else {
+      Utils.hideKeyboard(context);
     }
 
     controller.text = '';

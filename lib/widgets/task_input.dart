@@ -46,7 +46,6 @@ class _TaskInputState extends State<TaskInput> {
                 controller: textEditingController,
                 onEditingComplete: () {
                   widget.onSubmitted(controller: textEditingController);
-                  Utils.hideKeyboard(context);
                 },
               ),
             ),

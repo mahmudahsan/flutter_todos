@@ -69,8 +69,8 @@ class DB {
   Future<List<Todo>> retrieveTodos(
       {TodoStatus status = TodoStatus.active}) async {
     final db = await database;
-    final List<Map<String, dynamic>> maps = await db
-        .query(kTableTodos, where: 'status=?', whereArgs: [status.index]);
+    final List<Map<String, dynamic>> maps = await db.query(kTableTodos,
+        where: 'status=?', whereArgs: [status.index], orderBy: 'updated ASC');
 
     // Convert List<Map<String, dynamic>> to List<Todo_object>
     return List.generate(maps.length, (i) {
