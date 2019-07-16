@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todos/constants.dart';
 import 'package:flutter_todos/widgets/header.dart';
+import 'package:flutter_todos/widgets/launch_screen.dart';
 import 'package:flutter_todos/widgets/task_input.dart';
 import 'package:flutter_todos/widgets/todo.dart';
 import 'package:flutter_todos/widgets/done.dart';
@@ -25,7 +26,7 @@ class TodosApp extends StatelessWidget {
         backgroundColor: Color(0xfffff5eb),
       ),
       title: kAppTitle,
-      home: HomeScreen(),
+      home: LaunchScreen(), // HomeScreen(),
     );
   }
 }

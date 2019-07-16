@@ -1,4 +1,4 @@
-const kAppTitle = 'flutter_todos';
+const kAppTitle = 'Flutter Todos';
 
 const kAboutPageUrl = 'http://ithinkdiff.net';
 const kAppPortfolioApple =
