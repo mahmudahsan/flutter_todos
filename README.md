@@ -26,6 +26,10 @@
     <br />
 </p>
 
+## Roadmap
+- [x] SQLite integration
+- [ ] Firebase Firestore with Login Sync [On Progress]
+
 # Demo
 - [<img src="resources/DL_google.png" alt="Google Play" height="60" />](https://play.google.com/store/apps/details?id=net.ithinkdiff.whattodo)
 - [My Other Mobile Apps](https://ithinkdiff.net)
