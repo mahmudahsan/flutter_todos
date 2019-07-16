@@ -5,8 +5,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todos/widgets/header.dart';
 import 'package:flutter_todos/constants.dart';
+import 'package:flutter_todos/widgets/home_screen.dart';
 
 class LaunchScreen extends StatefulWidget {
+  bool shouldPopOnSkip;
+
+  LaunchScreen({this.shouldPopOnSkip = true});
+
   @override
   _LaunchScreenState createState() => _LaunchScreenState();
 }
@@ -21,7 +26,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
         color: Colors.white,
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 500,
+          height: 380,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -34,25 +39,17 @@ class _LaunchScreenState extends State<LaunchScreen> {
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
+              getLine(),
               Container(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 10),
-                      child: ButtonTheme(
-                        minWidth: double.infinity,
-                        child: RaisedButton(
-                          onPressed: () {},
-                          child: Text('Offline Only'),
-                        ),
-                      ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text('Synchronize and backup your data'),
                     ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text('Sync and backup'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
@@ -69,9 +66,6 @@ class _LaunchScreenState extends State<LaunchScreen> {
                           child: Text('Twitter'),
                         ),
                       ],
-                    ),
-                    SizedBox(
-                      height: 30,
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10),
@@ -94,9 +88,39 @@ class _LaunchScreenState extends State<LaunchScreen> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
+              getLine(),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ButtonTheme(
+                  minWidth: double.infinity,
+                  child: RaisedButton(
+                    onPressed: () {
+                      if (widget.shouldPopOnSkip) {
+                        Navigator.pop(context);
+                      } else {
+                        print('I do not know what to do');
+                      }
+                    },
+                    child: Text('Skip'),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget getLine() {
+    return SizedBox(
+      height: 0.5,
+      width: double.infinity,
+      child: Container(
+        color: Colors.grey,
       ),
     );
   }

@@ -9,6 +9,7 @@ import 'package:flutter_todos/utils/colors.dart';
 
 enum kMoreOptionsKeys {
   clearAll,
+  sync,
   moreApps,
   about,
   writeReview,
@@ -19,6 +20,7 @@ enum kMoreOptionsKeys {
 Map<int, String> kMoreOptionsMap = {
   kMoreOptionsKeys.clearAll.index: 'Clear Done',
   kMoreOptionsKeys.moreApps.index: 'More Apps',
+  kMoreOptionsKeys.sync.index: 'Sync Todos',
   kMoreOptionsKeys.about.index: 'About',
   kMoreOptionsKeys.writeReview.index: 'Write a Review',
   kMoreOptionsKeys.shareApp.index: 'Share',

@@ -7,6 +7,7 @@ import 'package:share/share.dart';
 import 'package:flutter_todos/model/db_wrapper.dart';
 import 'package:flutter_todos/utils/utils.dart';
 import 'package:flutter_todos/constants.dart';
+import 'package:flutter_todos/widgets/launch_screen.dart';
 
 class Popup extends StatelessWidget {
   Function getTodosAndDones;
@@ -33,6 +34,9 @@ class Popup extends StatelessWidget {
               DBWrapper.sharedInstance.deleteAllDoneTodos();
               getTodosAndDones();
             });
+          } else if (value == kMoreOptionsKeys.sync.index) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LaunchScreen()));
           } else if (value == kMoreOptionsKeys.moreApps.index) {
             Utils.launchURL(portfolioUrl);
           } else if (value == kMoreOptionsKeys.about.index) {
