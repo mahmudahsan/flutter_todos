@@ -26,6 +26,9 @@
     <br />
 </p>
 
+## Code Discussion
+[Video Presentation](https://www.youtube.com/watch?v=OQG3MxenJsM)
+
 ## Roadmap
 - [x] SQLite integration
 - [ ] Firebase Firestore with Login Sync [On Progress]
