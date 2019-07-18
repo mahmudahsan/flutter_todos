@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todos/widgets/header.dart';
 import 'package:flutter_todos/constants.dart';
-import 'package:flutter_todos/widgets/home_screen.dart';
+import 'package:flutter_todos/service/firebase_auth.dart';
 
 class LaunchScreen extends StatefulWidget {
   bool shouldPopOnSkip;
@@ -17,6 +17,12 @@ class LaunchScreen extends StatefulWidget {
 }
 
 class _LaunchScreenState extends State<LaunchScreen> {
+  @override
+  void initState() {
+    super.initState();
+    //MyFirebase().getAllTodos();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +64,21 @@ class _LaunchScreenState extends State<LaunchScreen> {
                           child: Text('Facebook'),
                         ),
                         RaisedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            try {
+                              Map<String, String> user =
+                                  await FirebaseAuthentication.instance
+                                      .signInWithGoogle();
+                              if (user != null) {
+                                print('User Name: ' + user['username']);
+                                print('User uid: ' + user['uid']);
+                              } else {
+                                print('User not authenticated');
+                              }
+                            } catch (error) {
+                              print(error);
+                            }
+                          },
                           child: Text('Google'),
                         ),
                         RaisedButton(
