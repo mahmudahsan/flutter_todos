@@ -42,35 +42,38 @@ class _LaunchScreenState extends State<LaunchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Card(
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        color: Colors.white,
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 380,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 10,
-              ),
-              Center(
-                child: Header(
-                  msg: kAppTitle,
+      body: SafeArea(
+        child: Card(
+          color: Colors.white,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 380,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 10,
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              getLine(),
-              if (isUserSignedIn) getSignedOut(),
-              if (!isUserSignedIn) getSignIn(),
-              SizedBox(
-                height: 10,
-              ),
-              getLine(),
-              if (!isUserSignedIn) getSkip(),
-            ],
+                Center(
+                  child: Header(
+                    msg: kAppTitle,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                getLine(),
+                if (isUserSignedIn) getSignedOut(),
+                if (!isUserSignedIn) getSignIn(),
+                SizedBox(
+                  height: 10,
+                ),
+                getLine(),
+                if (isUserSignedIn) getSynchronizedMessage(),
+                if (isUserSignedIn) getSkip('Go Back'),
+                if (!isUserSignedIn) getSkip('Skip'),
+              ],
+            ),
           ),
         ),
       ),
@@ -96,6 +99,16 @@ class _LaunchScreenState extends State<LaunchScreen> {
           FirebaseAuthentication.instance.signOut();
         },
         child: Text('Logout'),
+      ),
+    );
+  }
+
+  Widget getSynchronizedMessage() {
+    return Container(
+      margin: EdgeInsets.all(10),
+      child: Text(
+        'Data will be synchronized and backup automatically.',
+        style: TextStyle(fontSize: Theme.of(context).textTheme.title.fontSize),
       ),
     );
   }
@@ -163,7 +176,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
     );
   }
 
-  Widget getSkip() {
+  Widget getSkip(String title) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: ButtonTheme(
@@ -176,7 +189,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
               print('I do not know what to do');
             }
           },
-          child: Text('Skip'),
+          child: Text(title),
         ),
       ),
     );
