@@ -13,6 +13,29 @@ class FirebaseAuthentication {
 
   FirebaseAuthentication._();
 
+  Future<bool> isUserSignedIn() async {
+    final FirebaseUser currentUser = await _auth.currentUser();
+    return currentUser != null;
+  }
+
+  void signOut() {
+    try {
+      _auth.signOut();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  void onAuthenticationChange(Function isLogin) {
+    _auth.onAuthStateChanged.listen((FirebaseUser user) {
+      if (user != null) {
+        isLogin(true);
+      } else {
+        isLogin(false);
+      }
+    });
+  }
+
   Future<Map<String, String>> signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth =
