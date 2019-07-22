@@ -49,7 +49,6 @@ class _LaunchScreenState extends State<LaunchScreen> {
           color: Colors.white,
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height: 550,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
