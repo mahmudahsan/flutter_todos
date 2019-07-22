@@ -31,7 +31,9 @@ dependencies:
   flutter_auth_buttons: ^0.5.0
   google_sign_in: ^4.0.4
   flutter_facebook_login: ^2.0.1
-  flutter_twitter_login: ^1.1.0
+  flutter_twitter_login:
+    git:
+      git://github.com/eudangeld/flutter_twitter_login.git
   firebase_auth: ^0.11.1+10
   # cloud_firestore: ^0.12.7
 

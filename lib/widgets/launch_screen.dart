@@ -150,10 +150,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
                 height: 5,
               ),
               TwitterSignInButton(
-                onPressed: () {
-                  print("Currently I don't have verified Twitter Account");
-                  //twitterSignIn() should be called
-                },
+                onPressed: twitterSignIn,
               ),
             ],
           ),

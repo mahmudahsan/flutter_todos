@@ -77,9 +77,11 @@ packages:
   flutter_twitter_login:
     dependency: "direct main"
     description:
-      name: flutter_twitter_login
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "30d02e17f7e9853903409c16fc5e12bca9ec59f4"
+      url: "git://github.com/eudangeld/flutter_twitter_login.git"
+    source: git
     version: "1.1.0"
   google_sign_in:
     dependency: "direct main"

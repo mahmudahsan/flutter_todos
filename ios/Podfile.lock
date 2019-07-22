@@ -55,6 +55,7 @@ PODS:
     - Flutter
   - flutter_twitter_login (0.0.1):
     - Flutter
+    - TwitterCore
     - TwitterKit
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -189,7 +190,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: f20243a1d828e0e9a3798b995174dedc16f1b32a
   Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
   flutter_facebook_login: be61e24a4b7d621515353c6b4583d1981bdaa3d6
-  flutter_twitter_login: acf71258bca3b35b6ac06681f7a33b48f4acc0bd
+  flutter_twitter_login: ec2f2719fc6a2944326ac92db69012342b78d308
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   google_sign_in: 27e70a98b529f0b076d4b19f231b81da28b1750b
   GoogleAppMeasurement: a35a645835bae31b6bdc0576396bc23908f12a22

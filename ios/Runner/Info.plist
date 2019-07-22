@@ -54,6 +54,7 @@
                 <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
                 <string>com.googleusercontent.apps.683728655684-ngipnjtrcduhtg65d6l9kicse35rbun4</string>
                     <string>fb333744360838897</string> <!-- Facebook -->
+                    <string>twitterkit-zvG2ue7IkpMwb8UwEpQM0dqNH</string>
             </array>
         </dict>
     </array>
@@ -68,6 +69,8 @@
         <string>fb-messenger-share-api</string>
         <string>fbauth2</string>
         <string>fbshareextension</string>
+        <string>twitter</string>
+        <string>twitterauth</string>
     </array>
 </dict>
 </plist>
