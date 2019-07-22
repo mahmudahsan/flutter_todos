@@ -72,3 +72,4 @@
 # Google Firebase
 google-services.json
 GoogleService-Info.plist
+twitter_config.dart

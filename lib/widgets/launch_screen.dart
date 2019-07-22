@@ -150,7 +150,10 @@ class _LaunchScreenState extends State<LaunchScreen> {
                 height: 5,
               ),
               TwitterSignInButton(
-                onPressed: () => {},
+                onPressed: () {
+                  print("Currently I don't have verified Twitter Account");
+                  //twitterSignIn() should be called
+                },
               ),
             ],
           ),
@@ -227,6 +230,20 @@ class _LaunchScreenState extends State<LaunchScreen> {
   void facebookSignIn() async {
     try {
       Map<String, String> user = await FirebaseAuth.signInWithFacebook();
+      if (user != null) {
+        print('User Name: ' + user['username']);
+        print('User uid: ' + user['uid']);
+      } else {
+        print('User not authenticated');
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  void twitterSignIn() async {
+    try {
+      Map<String, String> user = await FirebaseAuth.signInWithTwitter();
       if (user != null) {
         print('User Name: ' + user['username']);
         print('User uid: ' + user['uid']);
