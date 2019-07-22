@@ -7,7 +7,7 @@ import 'package:flutter_todos/widgets/header.dart';
 import 'package:flutter_todos/constants.dart';
 import 'package:flutter_todos/utils/colors.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
-import 'package:flutter_todos/service/firebase_auth.dart' as FirebaseAuth;
+import 'package:flutter_todos/service/authentication.dart' as FirebaseAuth;
 
 class LaunchScreen extends StatefulWidget {
   bool shouldPopOnSkip;
@@ -137,9 +137,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               FacebookSignInButton(
-                onPressed: () {
-                  // call authentication logic
-                },
+                onPressed: facebookSignIn,
               ),
               SizedBox(
                 height: 5,
@@ -215,6 +213,20 @@ class _LaunchScreenState extends State<LaunchScreen> {
   void googleSignIn() async {
     try {
       Map<String, String> user = await FirebaseAuth.signInWithGoogle();
+      if (user != null) {
+        print('User Name: ' + user['username']);
+        print('User uid: ' + user['uid']);
+      } else {
+        print('User not authenticated');
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  void facebookSignIn() async {
+    try {
+      Map<String, String> user = await FirebaseAuth.signInWithFacebook();
       if (user != null) {
         print('User Name: ' + user['username']);
         print('User uid: ' + user['uid']);
