@@ -53,9 +53,21 @@
                 <!-- TODO Replace this value: -->
                 <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
                 <string>com.googleusercontent.apps.683728655684-ngipnjtrcduhtg65d6l9kicse35rbun4</string>
+                    <string>fb333744360838897</string> <!-- Facebook -->
             </array>
         </dict>
     </array>
     <!-- End of the Google Sign-in Section -->
+    <key>FacebookAppID</key>
+    <string>333744360838897</string>
+    <key>FacebookDisplayName</key>
+    <string>Flutter Todos</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-share-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
 </dict>
 </plist>
