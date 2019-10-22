@@ -1,4 +1,8 @@
 <p align="center">
+    <img src="cover.png" alt="Flutter" />
+</p>
+
+<p align="center">
     <a href="https://www.youtube.com/channel/UCtHlgyUw0wLE5Ous9swfFlg">
         <img src="https://img.shields.io/badge/my-youtube channel-red.svg" alt="Youtube" />
     </a>
