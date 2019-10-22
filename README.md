@@ -1,4 +1,7 @@
 <p align="center">
+    <img src="cover.png" alt="Flutter" />
+</p>
+<p align="center">
     <a href="/">
         <img src="https://img.shields.io/badge/build-passing-brightgreen.svg" alt="Build" />
     </a>
