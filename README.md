@@ -6,8 +6,8 @@
     <a href="https://www.youtube.com/channel/UCtHlgyUw0wLE5Ous9swfFlg">
         <img src="https://img.shields.io/badge/my-youtube channel-red.svg" alt="Youtube" />
     </a>
-    <a href="https://thinkdiff.net/?s=flutter">
-        <img src="https://img.shields.io/badge/blog-thinkdiff.net-brightgreen.svg" alt="thinkdiff.net" />
+    <a href="https://flutterbook.net/">
+        <img src="https://img.shields.io/badge/tutorial-flutterbook.net-brightgreen.svg" alt="https://flutterbook.net/" />
     </a>
     <a href="https://ithinkdiff.net/">
         <img src="https://img.shields.io/badge/mobile-apps-yellow.svg" alt="ithinkdiff.net" />
@@ -70,6 +70,7 @@
 1. [What is Future and Async](https://www.youtube.com/watch?v=8KOdOXRboh8&list=PLlMOodDAsO4xrTgVEkKXfVf7sSVEsmWKQ&index=12&t=0s)
 
 ### More Tutorials / Links
+- [FlutterBook.net](https://flutterbook.net/)
 - [Flutter by Mahmud Ahsan](https://github.com/mahmudahsan/flutter)
 
 
