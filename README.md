@@ -33,9 +33,6 @@
 
 ## Roadmap
 - [x] SQLite integration
-- [ ] Firebase Auth Google | Facebook | Twitter [On Progress]
-- [ ] Firestore NoSQL Database Intergration
-- [ ] Redux State Management with Middleware
 
 # Demo
 - [<img src="resources/DL_google.png" alt="Google Play" height="60" />](https://play.google.com/store/apps/details?id=net.ithinkdiff.whattodo)
