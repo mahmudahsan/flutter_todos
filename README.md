@@ -1,8 +1,4 @@
 <p align="center">
-    <img src="cover.png" alt="Flutter" />
-</p>
-
-<p align="center">
     <a href="https://www.youtube.com/channel/UCtHlgyUw0wLE5Ous9swfFlg">
         <img src="https://img.shields.io/badge/my-youtube channel-red.svg" alt="Youtube" />
     </a>
@@ -67,7 +63,6 @@
 1. [What is Future and Async](https://www.youtube.com/watch?v=8KOdOXRboh8&list=PLlMOodDAsO4xrTgVEkKXfVf7sSVEsmWKQ&index=12&t=0s)
 
 ### More Tutorials / Links
-- [FlutterBook.net](https://flutterbook.net/)
 - [Flutter by Mahmud Ahsan](https://github.com/mahmudahsan/flutter)
 
 
